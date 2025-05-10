@@ -10,6 +10,7 @@
       background-color: #fff2f2;
       text-align: center;
       padding: 30px 15px;
+      overflow: hidden;
     }
     .message {
       font-size: 24px;
@@ -18,11 +19,30 @@
       line-height: 1.6;
       min-height: 200px;
     }
+    .firework-btn {
+      padding: 12px 25px;
+      font-size: 20px;
+      background-color: #ff6f91;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 30px;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
   <h1>💖 給媽媽的話 💖</h1>
   <div class="message" id="message"></div>
+  <button class="firework-btn" onclick="launchFireworks()">🎇 點我放煙火！</button>
+  <canvas id="fireworksCanvas"></canvas>
 
   <script>
     const text = `Happy mother's day~~
@@ -30,6 +50,7 @@
 除了要煮飯接我上下學，還要每天幫我們注意哪裡沒消毒乾淨，
 好啦開玩笑的。還是希望你能每天開心，不要胡思亂想。
 Love you。`;
+
     let i = 0;
     function showMessage() {
       const el = document.getElementById('message');
@@ -42,6 +63,49 @@ Love you。`;
     }
 
     window.onload = showMessage;
+
+    // ==== Fireworks Effect ====
+    const canvas = document.getElementById('fireworksCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function launchFireworks() {
+      for (let i = 0; i < 100; i++) {
+        particles.push({
+          x: canvas.width / 2,
+          y: canvas.height / 2,
+          angle: Math.random() * 2 * Math.PI,
+          speed: Math.random() * 5 + 2,
+          radius: Math.random() * 2 + 1,
+          color: `hsl(${Math.random() * 360}, 100%, 60%)`,
+          life: 60
+        });
+      }
+    }
+
+    function updateFireworks() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, index) => {
+        p.x += Math.cos(p.angle) * p.speed;
+        p.y += Math.sin(p.angle) * p.speed;
+        p.life--;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+        if (p.life <= 0) particles.splice(index, 1);
+      });
+      requestAnimationFrame(updateFireworks);
+    }
+
+    updateFireworks();
   </script>
 </body>
 </html>
