@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>給媽媽的話</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff2f2;
+      text-align: center;
+      padding: 30px 15px;
+    }
+    .message {
+      font-size: 24px;
+      white-space: pre-wrap;
+      margin-top: 40px;
+      line-height: 1.6;
+      min-height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <h1>💖 給媽媽的話 💖</h1>
+  <div class="message" id="message"></div>
+
+  <script>
+    const text = `Happy mother's day~~
+又是一年一度的母親節了，這段時間辛苦妳啦，
+除了要煮飯接我上下學，還要每天幫我們注意哪裡沒消毒乾淨，
+好啦開玩笑的。還是希望你能每天開心，不要胡思亂想。
+Love you。`;
+    let i = 0;
+    function showMessage() {
+      const el = document.getElementById('message');
+      el.innerHTML = '';
+      const timer = setInterval(() => {
+        el.innerHTML += text[i];
+        i++;
+        if (i >= text.length) clearInterval(timer);
+      }, 60);
+    }
+
+    window.onload = showMessage;
+  </script>
+</body>
+</html>

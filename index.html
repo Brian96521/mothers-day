@@ -9,7 +9,7 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: #fff8f0;
       text-align: center;
-      padding: 30px 15px;
+      padding: 50px 20px;
     }
     h1 {
       font-size: 36px;
@@ -17,7 +17,7 @@
     }
     .start-btn {
       padding: 15px 30px;
-      font-size: 20px;
+      font-size: 22px;
       background-color: #ff6f91;
       color: white;
       border: none;
@@ -25,18 +25,10 @@
       cursor: pointer;
       margin-top: 20px;
     }
-    .message {
-      font-size: 24px;
-      margin-top: 40px;
-      white-space: pre-wrap;
-      min-height: 200px;
-      line-height: 1.6;
-    }
     img {
       max-width: 100%;
-      height: auto;
-      margin-top: 20px;
       border-radius: 12px;
+      margin-top: 30px;
     }
   </style>
 </head>
@@ -44,26 +36,6 @@
   <h1>Happy Mother's Day 💐</h1>
   <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6" alt="母親節插圖">
   <br>
-  <button class="start-btn" onclick="showMessage()">Start</button>
-  <div class="message" id="message"></div>
-
-  <script>
-    const text = `Happy mother's day~~
-又是一年一度的母親節了，這段時間辛苦妳啦，
-除了要煮飯接我上下學，還要每天幫我們注意哪裡沒消毒乾淨，
-好啦開玩笑的。還是希望你能每天開心，不要胡思亂想。
-Love you。`;
-    let i = 0;
-    function showMessage() {
-      const msgEl = document.getElementById("message");
-      msgEl.innerHTML = "";
-      i = 0;
-      const interval = setInterval(() => {
-        msgEl.innerHTML += text[i];
-        i++;
-        if (i >= text.length) clearInterval(interval);
-      }, 60);
-    }
-  </script>
+  <button class="start-btn" onclick="location.href='message.html'">Start</button>
 </body>
 </html>
