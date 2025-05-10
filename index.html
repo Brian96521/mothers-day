@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Mother's Day</title>
+  <style>
+    body {
+      background-color: #fff6f6;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #e91e63;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 30px;
+    }
+
+    #message {
+      margin-top: 50px;
+      font-size: 1.4em;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8em;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Happy Mother's Day</h1>
+  <button onclick="startTyping()">Start</button>
+  <div id="message"></div>
+
+  <script>
+    const message = `Happy mother's day~~ 又是一年一度的母親節了，這段時間辛苦妳啦，除了要煮飯接我上下學，還要每天幫我們注意哪裡沒消毒乾淨，好啦開玩笑的。還是希望你能每天開心，不要胡思亂想。Love you`;
+
+    let index = 0;
+    const speed = 50;
+
+    function startTyping() {
+      document.querySelector("button").style.display = "none";
+      typeWriter();
+    }
+
+    function typeWriter() {
+      if (index < message.length) {
+        document.getElementById("message").innerHTML += message.charAt(index);
+        index++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+  </script>
+
+</body>
+</html>
