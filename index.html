@@ -3,66 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <title>Happy Mother's Day</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      background-color: #fff6f6;
       font-family: 'Segoe UI', sans-serif;
+      background-color: #fff8f0;
       text-align: center;
-      padding-top: 100px;
+      padding: 30px 15px;
     }
-
     h1 {
-      font-size: 2.5em;
-      color: #e91e63;
+      font-size: 36px;
+      margin-bottom: 20px;
     }
-
-    button {
-      padding: 10px 20px;
-      font-size: 1.2em;
-      background-color: #e91e63;
+    .start-btn {
+      padding: 15px 30px;
+      font-size: 20px;
+      background-color: #ff6f91;
       color: white;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
-      margin-top: 30px;
+      margin-top: 20px;
     }
-
-    #message {
-      margin-top: 50px;
-      font-size: 1.4em;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.8em;
+    .message {
+      font-size: 24px;
+      margin-top: 40px;
       white-space: pre-wrap;
+      min-height: 200px;
+      line-height: 1.6;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 20px;
+      border-radius: 12px;
     }
   </style>
 </head>
 <body>
-
-  <h1>Happy Mother's Day</h1>
-  <button onclick="startTyping()">Start</button>
-  <div id="message"></div>
+  <h1>Happy Mother's Day 💐</h1>
+  <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6" alt="母親節插圖">
+  <br>
+  <button class="start-btn" onclick="showMessage()">Start</button>
+  <div class="message" id="message"></div>
 
   <script>
-    const message = `Happy mother's day~~ 又是一年一度的母親節了，這段時間辛苦妳啦，除了要煮飯接我上下學，還要每天幫我們注意哪裡沒消毒乾淨，好啦開玩笑的。還是希望你能每天開心，不要胡思亂想。Love you`;
-
-    let index = 0;
-    const speed = 50;
-
-    function startTyping() {
-      document.querySelector("button").style.display = "none";
-      typeWriter();
-    }
-
-    function typeWriter() {
-      if (index < message.length) {
-        document.getElementById("message").innerHTML += message.charAt(index);
-        index++;
-        setTimeout(typeWriter, speed);
-      }
+    const text = `Happy mother's day~~
+又是一年一度的母親節了，這段時間辛苦妳啦，
+除了要煮飯接我上下學，還要每天幫我們注意哪裡沒消毒乾淨，
+好啦開玩笑的。還是希望你能每天開心，不要胡思亂想。
+Love you。`;
+    let i = 0;
+    function showMessage() {
+      const msgEl = document.getElementById("message");
+      msgEl.innerHTML = "";
+      i = 0;
+      const interval = setInterval(() => {
+        msgEl.innerHTML += text[i];
+        i++;
+        if (i >= text.length) clearInterval(interval);
+      }, 60);
     }
   </script>
-
 </body>
 </html>
